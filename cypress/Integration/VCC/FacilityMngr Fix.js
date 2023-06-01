@@ -34,7 +34,8 @@ describe('FacilityMgr fix',function()
           cy.xpath("//input[@value='Select Areas']").type(this.actualdata.selectarea).type('{enter}')
           cy.get('input[placeholder="User First Name"]').type(this.actualdata.firstname)
           cy.get('input[placeholder="User Last Name"]').type( this.actualdata.lastname)
-          cy.get('input[placeholder="User Email address"]').type( this.actualdata.email)
+          //cy.get('input[placeholder="User Email address"]').type( this.actualdata.email)  removed From UI
+          cy.xpath("//input[@id='userEmail']").type('username')                //username
           cy.get('input[placeholder="User Contact Email address"]').type( this.actualdata.contactemail)
           cy.get('input[placeholder="User Phone Number"]').type( this.actualdata.phone)
           const fl= "Images/DemoImg.jpg"

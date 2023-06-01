@@ -23,5 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+ //import cypress from "cypress";
+ Cypress.Commands.add('Bylable',(label)=>{
+    cy.get('a').contains(label).click('{force: true}')
+ })
 import "cypress-file-upload";
 import "cypress-xpath";
+
+
+
+

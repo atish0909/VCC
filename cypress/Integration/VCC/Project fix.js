@@ -29,7 +29,8 @@ describe('ProjectFix',function()
       cy.get('.modal-title > h4').should('be.visible')                
       cy.xpath("//input[@name='projectname']").type(this.actualdata.Projectname)
       cy.xpath("//input[@type='email']").type(this.actualdata.Projectemail)
-      cy.get('.col-md-12 > .form-group > .form-control').select('Pashan - Pune')
+      cy.xpath("//input[@placeholder='Project Legal Name']").type('legal name ')                      //Project legal name
+      cy.xpath("//select[@required='required']").select('Pashan - Pune')
       cy.xpath("//input[@placeholder='Registration No']").type(this.actualdata.RegistrationNo)
       cy.xpath("//input[@placeholder='TAN No']").type(this.actualdata.TANNo)
       cy.xpath("//input[@placeholder='PAN No']").type(this.actualdata.PANNo)
@@ -52,7 +53,7 @@ describe('ProjectFix',function()
    })
 
    it('Active/Inactive',function(){
-    cy.get(':nth-child(1) > [tr-ng-grid-body-cell="10"] > .tr-ng-cell > [ng-switch-when="true"] > [ng-transclude=""] > .ng-scope > #inactivateBtn > .glyphicon').click()      // Inactive project
+    cy.get('[style=""] > [tr-ng-grid-body-cell="10"] > .tr-ng-cell > [ng-switch-when="true"] > [ng-transclude=""] > .ng-scope > #inactivateBtn').click({force:true})                    // Inactive project
       cy.get('h5').should('be.visible','Do you want to inactivate Tech IT Park?')                                           
       // cy.xpath("//button[@class='btn btn-sm btn-primary']").click()            // for save activate project
       cy.xpath("//button[@class='btn btn-sm btn-warning']").click()               // for cancel 
@@ -60,7 +61,7 @@ describe('ProjectFix',function()
    })
    it('edit',function() {
        
-       cy.get(':nth-child(1) > [tr-ng-grid-body-cell="10"] > .tr-ng-cell > [ng-switch-when="true"] > [ng-transclude=""] > .ng-scope > #editProjectBtn > .glyphicon').click()
+    cy.get('[style=""] > [tr-ng-grid-body-cell="10"] > .tr-ng-cell > [ng-switch-when="true"] > [ng-transclude=""] > .ng-scope > #editProjectBtn > .glyphicon').click({force:true})               //click on edit button
        cy.get('.modal-header').should('be.visible')                                //edit popup display
       cy.wait(2000)
       cy.get('.modal-footer > .btn-primary').click()                               //Update
@@ -70,18 +71,20 @@ describe('ProjectFix',function()
     
     it('Parking Allowtment', function(){
 
-      cy.get(':nth-child(2) > [tr-ng-grid-body-cell="10"] > .tr-ng-cell > [ng-switch-when="true"] > [ng-transclude=""] > .ng-scope > #addparking > .fa').click()    //Parking Allowtment
+      cy.get('[style=""] > [tr-ng-grid-body-cell="10"] > .tr-ng-cell > [ng-switch-when="true"] > [ng-transclude=""] > .ng-scope > #addparking').click({force:true})    //Parking Allowtment
         cy.xpath("//input[@placeholder='Total Parking']").type('2')                                                                                             // Total Parking
         cy.xpath("//button[@class='btn btn-primary']").click()                                                                                                  // Add Parking type
-        cy.xpath("//input[@placeholder='Parking Type']").type("Base1")
-        cy.xpath("//input[@placeholder='Parking Count']").type("5")
+        cy.get('[ng-repeat="parking in addParkingObj.parkingcountbytype"] > .col-md-6 > .form-group > .form-control').clear().type("Base1")
+        cy.get('[ng-repeat="parking in addParkingObj.parkingcountbytype"] > .col-md-4 > .form-group > .form-control').clear().type("5")
         //cy.xpath("//button[@class='btn btn-sm btn-primary']").click()                                                 //for save
         cy.xpath('//button[@class="btn btn-sm btn-warning"]').click()                                                   // For cancel
         cy.xpath("//input[@placeholder='Search']").type("VAST")
         cy.get('[field-name="name"] > .tr-ng-cell > div.ng-scope > div > .ng-binding').should('be.visible')                  //search validation
+        cy.xpath("//input[@placeholder='Search']").clear()                //for clear the searched project
  
 
     })
     
     })
 
+   

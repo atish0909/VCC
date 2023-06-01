@@ -7,6 +7,7 @@ module.exports = defineConfig({
       screenshotOnRunFailure=true;
       require('cypress-mochawesome-reporter/plugin')(on);
     },
+    
     specPattern:'cypress/Integration'
   },
 });

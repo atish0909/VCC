@@ -33,6 +33,7 @@ describe('Zone',function()
       //cy.get('.pull-left > .form-control').type('Baner')
       cy.get('.pull-left > .form-control').type(this.actualdata.search)
       cy.get('[field-name="name"] > .tr-ng-cell > [ng-switch-when="true"] > [ng-transclude=""] > .ng-binding').should('contain','Baner')
+      cy.get('.pull-left > .form-control').clear()
    } )
 
         })

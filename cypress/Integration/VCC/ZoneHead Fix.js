@@ -36,7 +36,8 @@ describe('ZoneHead fix',function()
 
           cy.get('input[placeholder="User First Name"]').type(this.actualdata.firstname)
           cy.get('input[placeholder="User Last Name"]').type( this.actualdata.lastname)
-          cy.get('input[placeholder="User Email address"]').type( this.actualdata.email)
+          // cy.get('input[placeholder="User Email address"]').type( this.actualdata.email)  removed from UI
+          cy.xpath("//input[@id='userEmail']").type(this.actualdata.name)                //username
           cy.get('input[placeholder="User Contact Email address"]').type( this.actualdata.contactemail)
           cy.get('input[placeholder="User Phone Number"]').type( this.actualdata.phone)
           const fl= "Images/DemoImg.jpg"
@@ -55,7 +56,7 @@ describe('ZoneHead fix',function()
       cy.get('.board > .row').should('be.visible')
       cy.get(':nth-child(5) > [field-name="name"] > .tr-ng-cell > div.ng-scope > div > #btzonesno').click()
       cy.wait(2000)
-      cy.get(':nth-child(2) > [field-name="name"] > .tr-ng-cell > div.ng-scope > div > .ng-binding').click()
+      cy.get('[field-name="name"] > .tr-ng-cell > div.ng-scope > div > .ng-binding').click()
       cy.get('.board > .row').should('be.visible')
       cy.get('.col-md-10 > .btn').click()
       cy.get('#zonalHead').click()
@@ -64,7 +65,11 @@ describe('ZoneHead fix',function()
       cy.xpath("//input[@value='Select Zones']").type("Pashan - Pune").type('{enter}')
      // cy.get('.modal-footer > .btn-primary').click()              //for update
      cy.get('.modal-footer > .btn-warning').click()                 //for cancel
-      
+     cy.get('[style=""] > [field-name="actions"] > .tr-ng-cell > [ng-switch-when="true"] > [ng-transclude=""] > .ng-scope > .btn-danger > .glyphicon').click()              //Inactivate superzonal head
+     cy.get('.chosen-single').click()                            //click on dropdown 
+     cy.xpath("//input[@class='chosen-search-input']").type('kothrud').type('{enter}')
+     cy.xpath("//button[@class='btn btn-sm btn-warning']").click()        //for cancels
+     //cy.xpath("//button[@class='btn btn-sm btn-primary ']").click()        //for save
 
    })
 
